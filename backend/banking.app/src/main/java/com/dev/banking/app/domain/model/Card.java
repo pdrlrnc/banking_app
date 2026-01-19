@@ -13,6 +13,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Card {
 
+    public Card()
+    {}
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -16,6 +16,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Transaction {
 
+    public Transaction()
+    {}
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

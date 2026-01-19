@@ -12,7 +12,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class Customer {
+    public Customer(){
 
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

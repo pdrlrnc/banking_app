@@ -13,8 +13,11 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "account")
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class Account {
+
+    public Account()
+    {}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
