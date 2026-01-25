@@ -5,11 +5,12 @@ import com.dev.banking.app.domain.model.Transaction;
 import com.dev.banking.app.domain.service.AccountService;
 import com.dev.banking.app.domain.service.TransactionService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -23,5 +24,13 @@ public class TransactionController {
     public List<Transaction> getAllTransactionsByAccount(Account account)
     {
         return transactionService.getAllTransactionsByAccount(account);
+    }
+    @GetMapping("/getTransactionByCustomerIdInTimeRange/")
+    public List<Transaction> getTransactionByCustomerIdInTimeRange(@RequestParam Long customerId,
+    @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startTime,
+    @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endTime
+    )
+    {
+        return transactionService.getTransactionByCustomerIdInTimeRange(customerId, startTime, endTime);
     }
 }
