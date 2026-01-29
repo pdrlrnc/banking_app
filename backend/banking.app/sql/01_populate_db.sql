@@ -1,7 +1,7 @@
 TRUNCATE TABLE customer RESTART IDENTITY CASCADE;
 TRUNCATE TABLE card RESTART IDENTITY CASCADE;
 TRUNCATE TABLE account RESTART IDENTITY CASCADE;
-TRUNCATE TABLE "transaction" RESTART IDENTITY CASCADE;
+TRUNCATE TABLE transactions RESTART IDENTITY CASCADE;
 
 INSERT INTO customer (email, name, password)
 VALUES ('admin@banking-app.com', 'admin', 'admin'),
@@ -21,7 +21,7 @@ VALUES ('123456790', 'debit', 1),
        ('123CDE123', 'credit', 3),
        ('ROM12345', 'debit', 4);
 
-INSERT INTO transaction (amount, time, to_account_id, from_account_id)
+INSERT INTO transactions (amount, time, to_account_id, from_account_id)
 VALUES ('10', CURRENT_TIMESTAMP, 1, 2),
        ('100', CURRENT_TIMESTAMP, 2, 1),
        ('10', CURRENT_TIMESTAMP, 3, 4),

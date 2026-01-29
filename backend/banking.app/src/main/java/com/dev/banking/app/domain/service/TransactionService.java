@@ -25,4 +25,8 @@ public class TransactionService {
     {
         return transactionRepository.findTransactionByCustomerIdInTimeRange(customerId, startDate, endDate);
     }
+
+    public List<Transaction> findAll() {
+        return transactionRepository.findAll();
+    }
 }
