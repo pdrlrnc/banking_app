@@ -2,18 +2,11 @@ package com.dev.banking.app.api.controller;
 
 import com.dev.banking.app.domain.dto.TransactionDTO;
 import com.dev.banking.app.domain.mapper.TransactionMapper;
-import com.dev.banking.app.domain.model.Account;
 import com.dev.banking.app.domain.model.Transaction;
-import com.dev.banking.app.domain.service.AccountService;
 import com.dev.banking.app.domain.service.TransactionService;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -30,13 +23,15 @@ public class TransactionController {
         List<TransactionDTO> dtos = TransactionMapper.toDTOList(transactions);
         return ResponseEntity.ok(dtos);
     }
-    /**
-    @GetMapping
-    public ResponseEntity<List<Transaction> getAllTransactionsByAccount(Account account)
-    {
-        return transactionService.getAllTransactionsByAccount(account);
-    }
 
+    @GetMapping("/{accountId}")
+    public ResponseEntity<List<TransactionDTO>> getAllTransactionsByAccount(@PathVariable Long accountId)
+    {
+        List<Transaction> transactionsByAccount = transactionService.getAllTransactionsByAccountId(accountId);
+        List <TransactionDTO> dtos = TransactionMapper.toDTOList(transactionsByAccount);
+        return ResponseEntity.ok(dtos);
+    }
+    /*
     //2024-01-29T10:30:00Z would be a valid date
     @GetMapping("/getTransactionByCustomerIdInTimeRange/")
     public List<Transaction> getTransactionByCustomerIdInTimeRange(@RequestParam Long customerId,
@@ -46,5 +41,5 @@ public class TransactionController {
     {
         return transactionService.getTransactionByCustomerIdInTimeRange(customerId, startTime, endTime);
     }
-    **/
+    */
 }
